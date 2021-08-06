@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="airlinesModelStoreContainer" CdmEntityContainer="airlinesEntities">
+    <EntitySetMapping Name="airline">
+      <EntityTypeMapping TypeName="airlinesModel.airline">
+        <MappingFragment StoreEntitySet="airline">
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="numero_aviones" ColumnName="numero_aviones" />
+          <ScalarProperty Name="rutas" ColumnName="rutas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="airlinesModel.airline">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="airlinesModel.Store.CREATE_AIRLINE">
+            <ScalarProperty Name="rutas" ParameterName="rutas" />
+            <ScalarProperty Name="numero_aviones" ParameterName="numero_aviones" />
+            <ScalarProperty Name="ciudad" ParameterName="ciudad" />
+            <ScalarProperty Name="descripcion" ParameterName="descripcion" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="airlinesModel.Store.UPDATE_AIRLINE">
+            <ScalarProperty Name="rutas" ParameterName="rutas" Version="Current" />
+            <ScalarProperty Name="numero_aviones" ParameterName="numero_aviones" Version="Current" />
+            <ScalarProperty Name="ciudad" ParameterName="ciudad" Version="Current" />
+            <ScalarProperty Name="descripcion" ParameterName="descripcion" Version="Current" />
+            <ScalarProperty Name="id_airline" ParameterName="id_airline" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="airlinesModel.Store.DELETE_AIRLINE">
+            <ScalarProperty Name="id_airline" ParameterName="id_airline" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pilots">
+      <EntityTypeMapping TypeName="airlinesModel.pilots">
+        <MappingFragment StoreEntitySet="pilots">
+          <ScalarProperty Name="id_pilot" ColumnName="id_pilot" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="salario" ColumnName="salario" />
+          <ScalarProperty Name="comision" ColumnName="comision" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="horas_vuelo" ColumnName="horas_vuelo" />
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="airlinesModel.pilots">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="airlinesModel.Store.CREATE_PILOT">
+            <ScalarProperty Name="id_airline" ParameterName="id_airline" />
+            <ScalarProperty Name="horas_vuelo" ParameterName="horas_vuelo" />
+            <ScalarProperty Name="cargo" ParameterName="cargo" />
+            <ScalarProperty Name="fecha_ingreso" ParameterName="fecha_ingreso" />
+            <ScalarProperty Name="comision" ParameterName="comision" />
+            <ScalarProperty Name="salario" ParameterName="salario" />
+            <ScalarProperty Name="nombres" ParameterName="nombres" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="airlinesModel.Store.UPDATE_PILOT">
+            <ScalarProperty Name="id_airline" ParameterName="id_airline" Version="Current" />
+            <ScalarProperty Name="horas_vuelo" ParameterName="horas_vuelo" Version="Current" />
+            <ScalarProperty Name="cargo" ParameterName="cargo" Version="Current" />
+            <ScalarProperty Name="fecha_ingreso" ParameterName="fecha_ingreso" Version="Current" />
+            <ScalarProperty Name="comision" ParameterName="comision" Version="Current" />
+            <ScalarProperty Name="salario" ParameterName="salario" Version="Current" />
+            <ScalarProperty Name="nombres" ParameterName="nombres" Version="Current" />
+            <ScalarProperty Name="id_pilot" ParameterName="id_pilot" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="airlinesModel.Store.DELETE_PILOT">
+            <ScalarProperty Name="id_pilot" ParameterName="id_pilot" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CREATE_AIRLINE" FunctionName="airlinesModel.Store.CREATE_AIRLINE" />
+    <FunctionImportMapping FunctionImportName="CREATE_PILOT" FunctionName="airlinesModel.Store.CREATE_PILOT" />
+    <FunctionImportMapping FunctionImportName="DELETE_AIRLINE" FunctionName="airlinesModel.Store.DELETE_AIRLINE" />
+    <FunctionImportMapping FunctionImportName="DELETE_PILOT" FunctionName="airlinesModel.Store.DELETE_PILOT" />
+    <FunctionImportMapping FunctionImportName="SELECT_AIRLINE" FunctionName="airlinesModel.Store.SELECT_AIRLINE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="airlinesModel.SELECT_AIRLINE_Result">
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="numero_aviones" ColumnName="numero_aviones" />
+          <ScalarProperty Name="rutas" ColumnName="rutas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SELECT_AIRLINES" FunctionName="airlinesModel.Store.SELECT_AIRLINES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="airlinesModel.SELECT_AIRLINES_Result">
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="numero_aviones" ColumnName="numero_aviones" />
+          <ScalarProperty Name="rutas" ColumnName="rutas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SELECT_PILOT" FunctionName="airlinesModel.Store.SELECT_PILOT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="airlinesModel.SELECT_PILOT_Result">
+          <ScalarProperty Name="id_pilot" ColumnName="id_pilot" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="salario" ColumnName="salario" />
+          <ScalarProperty Name="comision" ColumnName="comision" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="horas_vuelo" ColumnName="horas_vuelo" />
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SELECT_PILOTS" FunctionName="airlinesModel.Store.SELECT_PILOTS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="airlinesModel.SELECT_PILOTS_Result">
+          <ScalarProperty Name="id_pilot" ColumnName="id_pilot" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="salario" ColumnName="salario" />
+          <ScalarProperty Name="comision" ColumnName="comision" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="horas_vuelo" ColumnName="horas_vuelo" />
+          <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UPDATE_AIRLINE" FunctionName="airlinesModel.Store.UPDATE_AIRLINE" />
+    <FunctionImportMapping FunctionImportName="UPDATE_PILOT" FunctionName="airlinesModel.Store.UPDATE_PILOT" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="airlinesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="airlinesModelStoreContainer">
+          <EntitySet Name="airline" EntityType="airlinesModel.Store.airline" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pilots" EntityType="airlinesModel.Store.pilots" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__pilots__id_airli__1273C1CD" Association="airlinesModel.Store.FK__pilots__id_airli__1273C1CD">
+            <End Role="airline" EntitySet="airline" />
+            <End Role="pilots" EntitySet="pilots" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="airline">
+          <Key>
+            <PropertyRef Name="id_airline" />
+          </Key>
+          <Property Name="id_airline" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ciudad" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="numero_aviones" Type="int" Nullable="false" />
+          <Property Name="rutas" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="pilots">
+          <Key>
+            <PropertyRef Name="id_pilot" />
+          </Key>
+          <Property Name="id_pilot" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="salario" Type="money" Nullable="false" />
+          <Property Name="comision" Type="money" Nullable="false" />
+          <Property Name="fecha_ingreso" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="cargo" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="horas_vuelo" Type="int" Nullable="false" />
+          <Property Name="id_airline" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__pilots__id_airli__1273C1CD">
+          <End Role="airline" Type="airlinesModel.Store.airline" Multiplicity="1" />
+          <End Role="pilots" Type="airlinesModel.Store.pilots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="airline">
+              <PropertyRef Name="id_airline" />
+            </Principal>
+            <Dependent Role="pilots">
+              <PropertyRef Name="id_airline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CREATE_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="numero_aviones" Type="int" Mode="In" />
+          <Parameter Name="rutas" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CREATE_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombres" Type="varchar" Mode="In" />
+          <Parameter Name="salario" Type="money" Mode="In" />
+          <Parameter Name="comision" Type="money" Mode="In" />
+          <Parameter Name="fecha_ingreso" Type="varchar" Mode="In" />
+          <Parameter Name="cargo" Type="varchar" Mode="In" />
+          <Parameter Name="horas_vuelo" Type="int" Mode="In" />
+          <Parameter Name="id_airline" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DELETE_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_airline" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DELETE_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pilot" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SELECT_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_airline" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SELECT_AIRLINES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SELECT_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pilot" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SELECT_PILOTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UPDATE_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_airline" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="numero_aviones" Type="int" Mode="In" />
+          <Parameter Name="rutas" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pilot" Type="int" Mode="In" />
+          <Parameter Name="nombres" Type="varchar" Mode="In" />
+          <Parameter Name="salario" Type="money" Mode="In" />
+          <Parameter Name="comision" Type="money" Mode="In" />
+          <Parameter Name="fecha_ingreso" Type="varchar" Mode="In" />
+          <Parameter Name="cargo" Type="varchar" Mode="In" />
+          <Parameter Name="horas_vuelo" Type="int" Mode="In" />
+          <Parameter Name="id_airline" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="airlinesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="airlinesEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="airline" EntityType="airlinesModel.airline" />
+          <EntitySet Name="pilots" EntityType="airlinesModel.pilots" />
+          <AssociationSet Name="FK__pilots__id_airli__1273C1CD" Association="airlinesModel.FK__pilots__id_airli__1273C1CD">
+            <End Role="airline" EntitySet="airline" />
+            <End Role="pilots" EntitySet="pilots" />
+          </AssociationSet>
+          <FunctionImport Name="CREATE_AIRLINE">
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="ciudad" Mode="In" Type="String" />
+            <Parameter Name="numero_aviones" Mode="In" Type="Int32" />
+            <Parameter Name="rutas" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CREATE_PILOT">
+            <Parameter Name="nombres" Mode="In" Type="String" />
+            <Parameter Name="salario" Mode="In" Type="Decimal" />
+            <Parameter Name="comision" Mode="In" Type="Decimal" />
+            <Parameter Name="fecha_ingreso" Mode="In" Type="String" />
+            <Parameter Name="cargo" Mode="In" Type="String" />
+            <Parameter Name="horas_vuelo" Mode="In" Type="Int32" />
+            <Parameter Name="id_airline" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_AIRLINE">
+          <Parameter Name="id_airline" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_PILOT">
+          <Parameter Name="id_pilot" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SELECT_AIRLINE" ReturnType="Collection(airlinesModel.SELECT_AIRLINE_Result)">
+          <Parameter Name="id_airline" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SELECT_AIRLINES" ReturnType="Collection(airlinesModel.SELECT_AIRLINES_Result)" />
+          <FunctionImport Name="SELECT_PILOT" ReturnType="Collection(airlinesModel.SELECT_PILOT_Result)">
+          <Parameter Name="id_pilot" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SELECT_PILOTS" ReturnType="Collection(airlinesModel.SELECT_PILOTS_Result)" />
+          <FunctionImport Name="UPDATE_AIRLINE">
+            <Parameter Name="id_airline" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="ciudad" Mode="In" Type="String" />
+            <Parameter Name="numero_aviones" Mode="In" Type="Int32" />
+            <Parameter Name="rutas" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_PILOT">
+            <Parameter Name="id_pilot" Mode="In" Type="Int32" />
+            <Parameter Name="nombres" Mode="In" Type="String" />
+            <Parameter Name="salario" Mode="In" Type="Decimal" />
+            <Parameter Name="comision" Mode="In" Type="Decimal" />
+            <Parameter Name="fecha_ingreso" Mode="In" Type="String" />
+            <Parameter Name="cargo" Mode="In" Type="String" />
+            <Parameter Name="horas_vuelo" Mode="In" Type="Int32" />
+            <Parameter Name="id_airline" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="airline">
+          <Key>
+            <PropertyRef Name="id_airline" />
+          </Key>
+          <Property Name="id_airline" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ciudad" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="numero_aviones" Type="Int32" Nullable="false" />
+          <Property Name="rutas" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="pilots" Relationship="airlinesModel.FK__pilots__id_airli__1273C1CD" FromRole="airline" ToRole="pilots" />
+        </EntityType>
+        <EntityType Name="pilots">
+          <Key>
+            <PropertyRef Name="id_pilot" />
+          </Key>
+          <Property Name="id_pilot" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="salario" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="comision" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="fecha_ingreso" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="cargo" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="horas_vuelo" Type="Int32" Nullable="false" />
+          <Property Name="id_airline" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="airline" Relationship="airlinesModel.FK__pilots__id_airli__1273C1CD" FromRole="pilots" ToRole="airline" />
+        </EntityType>
+        <Association Name="FK__pilots__id_airli__1273C1CD">
+          <End Role="airline" Type="airlinesModel.airline" Multiplicity="1" />
+          <End Role="pilots" Type="airlinesModel.pilots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="airline">
+              <PropertyRef Name="id_airline" />
+            </Principal>
+            <Dependent Role="pilots">
+              <PropertyRef Name="id_airline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SELECT_AIRLINE_Result">
+          <Property Type="Int32" Name="id_airline" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ciudad" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="numero_aviones" Nullable="false" />
+          <Property Type="String" Name="rutas" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SELECT_AIRLINES_Result">
+          <Property Type="Int32" Name="id_airline" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ciudad" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="numero_aviones" Nullable="false" />
+          <Property Type="String" Name="rutas" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SELECT_PILOT_Result">
+          <Property Type="Int32" Name="id_pilot" Nullable="false" />
+          <Property Type="String" Name="nombres" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="salario" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="comision" Nullable="false" Precision="19" />
+          <Property Type="String" Name="fecha_ingreso" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="cargo" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="horas_vuelo" Nullable="false" />
+          <Property Type="Int32" Name="id_airline" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SELECT_PILOTS_Result">
+          <Property Type="Int32" Name="id_pilot" Nullable="false" />
+          <Property Type="String" Name="nombres" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="salario" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="comision" Nullable="false" Precision="19" />
+          <Property Type="String" Name="fecha_ingreso" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="cargo" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="horas_vuelo" Nullable="false" />
+          <Property Type="Int32" Name="id_airline" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="airlinesModelStoreContainer" CdmEntityContainer="airlinesEntities">
+          <EntitySetMapping Name="airline">
+            <EntityTypeMapping TypeName="airlinesModel.airline">
+              <MappingFragment StoreEntitySet="airline">
+                <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="numero_aviones" ColumnName="numero_aviones" />
+                <ScalarProperty Name="rutas" ColumnName="rutas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="airlinesModel.airline">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="airlinesModel.Store.CREATE_AIRLINE">
+                  <ScalarProperty Name="rutas" ParameterName="rutas" />
+                  <ScalarProperty Name="numero_aviones" ParameterName="numero_aviones" />
+                  <ScalarProperty Name="ciudad" ParameterName="ciudad" />
+                  <ScalarProperty Name="descripcion" ParameterName="descripcion" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="airlinesModel.Store.UPDATE_AIRLINE">
+                  <ScalarProperty Name="rutas" ParameterName="rutas" Version="Current" />
+                  <ScalarProperty Name="numero_aviones" ParameterName="numero_aviones" Version="Current" />
+                  <ScalarProperty Name="ciudad" ParameterName="ciudad" Version="Current" />
+                  <ScalarProperty Name="descripcion" ParameterName="descripcion" Version="Current" />
+                  <ScalarProperty Name="id_airline" ParameterName="id_airline" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="airlinesModel.Store.DELETE_AIRLINE">
+                  <ScalarProperty Name="id_airline" ParameterName="id_airline" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pilots">
+            <EntityTypeMapping TypeName="airlinesModel.pilots">
+              <MappingFragment StoreEntitySet="pilots">
+                <ScalarProperty Name="id_pilot" ColumnName="id_pilot" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="horas_vuelo" ColumnName="horas_vuelo" />
+                <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="airlinesModel.pilots">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="airlinesModel.Store.CREATE_PILOT">
+                  <ScalarProperty Name="id_airline" ParameterName="id_airline" />
+                  <ScalarProperty Name="horas_vuelo" ParameterName="horas_vuelo" />
+                  <ScalarProperty Name="cargo" ParameterName="cargo" />
+                  <ScalarProperty Name="fecha_ingreso" ParameterName="fecha_ingreso" />
+                  <ScalarProperty Name="comision" ParameterName="comision" />
+                  <ScalarProperty Name="salario" ParameterName="salario" />
+                  <ScalarProperty Name="nombres" ParameterName="nombres" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="airlinesModel.Store.UPDATE_PILOT">
+                  <ScalarProperty Name="id_airline" ParameterName="id_airline" Version="Current" />
+                  <ScalarProperty Name="horas_vuelo" ParameterName="horas_vuelo" Version="Current" />
+                  <ScalarProperty Name="cargo" ParameterName="cargo" Version="Current" />
+                  <ScalarProperty Name="fecha_ingreso" ParameterName="fecha_ingreso" Version="Current" />
+                  <ScalarProperty Name="comision" ParameterName="comision" Version="Current" />
+                  <ScalarProperty Name="salario" ParameterName="salario" Version="Current" />
+                  <ScalarProperty Name="nombres" ParameterName="nombres" Version="Current" />
+                  <ScalarProperty Name="id_pilot" ParameterName="id_pilot" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="airlinesModel.Store.DELETE_PILOT">
+                  <ScalarProperty Name="id_pilot" ParameterName="id_pilot" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CREATE_AIRLINE" FunctionName="airlinesModel.Store.CREATE_AIRLINE" />
+          <FunctionImportMapping FunctionImportName="CREATE_PILOT" FunctionName="airlinesModel.Store.CREATE_PILOT" />
+          <FunctionImportMapping FunctionImportName="DELETE_AIRLINE" FunctionName="airlinesModel.Store.DELETE_AIRLINE" />
+          <FunctionImportMapping FunctionImportName="DELETE_PILOT" FunctionName="airlinesModel.Store.DELETE_PILOT" />
+          <FunctionImportMapping FunctionImportName="SELECT_AIRLINE" FunctionName="airlinesModel.Store.SELECT_AIRLINE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="airlinesModel.SELECT_AIRLINE_Result">
+                <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="numero_aviones" ColumnName="numero_aviones" />
+                <ScalarProperty Name="rutas" ColumnName="rutas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SELECT_AIRLINES" FunctionName="airlinesModel.Store.SELECT_AIRLINES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="airlinesModel.SELECT_AIRLINES_Result">
+                <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="numero_aviones" ColumnName="numero_aviones" />
+                <ScalarProperty Name="rutas" ColumnName="rutas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SELECT_PILOT" FunctionName="airlinesModel.Store.SELECT_PILOT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="airlinesModel.SELECT_PILOT_Result">
+                <ScalarProperty Name="id_pilot" ColumnName="id_pilot" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="horas_vuelo" ColumnName="horas_vuelo" />
+                <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SELECT_PILOTS" FunctionName="airlinesModel.Store.SELECT_PILOTS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="airlinesModel.SELECT_PILOTS_Result">
+                <ScalarProperty Name="id_pilot" ColumnName="id_pilot" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="horas_vuelo" ColumnName="horas_vuelo" />
+                <ScalarProperty Name="id_airline" ColumnName="id_airline" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UPDATE_AIRLINE" FunctionName="airlinesModel.Store.UPDATE_AIRLINE" />
+          <FunctionImportMapping FunctionImportName="UPDATE_PILOT" FunctionName="airlinesModel.Store.UPDATE_PILOT" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

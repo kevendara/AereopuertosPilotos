@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="airlinesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="airlinesModelStoreContainer">
+    <EntitySet Name="airline" EntityType="airlinesModel.Store.airline" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="pilots" EntityType="airlinesModel.Store.pilots" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__pilots__id_airli__1273C1CD" Association="airlinesModel.Store.FK__pilots__id_airli__1273C1CD">
+      <End Role="airline" EntitySet="airline" />
+      <End Role="pilots" EntitySet="pilots" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="airline">
+    <Key>
+      <PropertyRef Name="id_airline" />
+    </Key>
+    <Property Name="id_airline" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="ciudad" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="numero_aviones" Type="int" Nullable="false" />
+    <Property Name="rutas" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="pilots">
+    <Key>
+      <PropertyRef Name="id_pilot" />
+    </Key>
+    <Property Name="id_pilot" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="salario" Type="money" Nullable="false" />
+    <Property Name="comision" Type="money" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="cargo" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="horas_vuelo" Type="int" Nullable="false" />
+    <Property Name="id_airline" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__pilots__id_airli__1273C1CD">
+    <End Role="airline" Type="airlinesModel.Store.airline" Multiplicity="1" />
+    <End Role="pilots" Type="airlinesModel.Store.pilots" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="airline">
+        <PropertyRef Name="id_airline" />
+      </Principal>
+      <Dependent Role="pilots">
+        <PropertyRef Name="id_airline" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CREATE_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="ciudad" Type="varchar" Mode="In" />
+    <Parameter Name="numero_aviones" Type="int" Mode="In" />
+    <Parameter Name="rutas" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CREATE_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombres" Type="varchar" Mode="In" />
+    <Parameter Name="salario" Type="money" Mode="In" />
+    <Parameter Name="comision" Type="money" Mode="In" />
+    <Parameter Name="fecha_ingreso" Type="varchar" Mode="In" />
+    <Parameter Name="cargo" Type="varchar" Mode="In" />
+    <Parameter Name="horas_vuelo" Type="int" Mode="In" />
+    <Parameter Name="id_airline" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DELETE_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_airline" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DELETE_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_pilot" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SELECT_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_airline" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SELECT_AIRLINES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SELECT_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_pilot" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SELECT_PILOTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UPDATE_AIRLINE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_airline" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="ciudad" Type="varchar" Mode="In" />
+    <Parameter Name="numero_aviones" Type="int" Mode="In" />
+    <Parameter Name="rutas" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UPDATE_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_pilot" Type="int" Mode="In" />
+    <Parameter Name="nombres" Type="varchar" Mode="In" />
+    <Parameter Name="salario" Type="money" Mode="In" />
+    <Parameter Name="comision" Type="money" Mode="In" />
+    <Parameter Name="fecha_ingreso" Type="varchar" Mode="In" />
+    <Parameter Name="cargo" Type="varchar" Mode="In" />
+    <Parameter Name="horas_vuelo" Type="int" Mode="In" />
+    <Parameter Name="id_airline" Type="int" Mode="In" />
+  </Function>
+</Schema>
